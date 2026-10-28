@@ -24,27 +24,30 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Free disk space on runner
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
       - name: Install system dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev \
+            git zip unzip autoconf libtool pkg-config zlib1g-dev \
             libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev \
             libssl-dev ccache lld
 
-      - name: Install latest build tools
+      - name: Install build tools
         run: |
           pip install --upgrade pip setuptools wheel
           pip install "cython<3.0.0"
-          pip install --upgrade git+https://github.com/kivy/buildozer.git
-          pip install --upgrade git+https://github.com/kivy/python-for-android.git
+          pip install buildozer
 
       - name: Build APK with Buildozer
-        # Set a browser User-Agent so download mirrors don't block GitHub with 403 Forbidden
-        env:
-          HTTP_USER_AGENT: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
         run: |
-          buildozer android debug
+          buildozer -v android debug
 
       - name: Upload APK artifact
         if: always()
