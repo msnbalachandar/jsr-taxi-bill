@@ -19,13 +19,14 @@ source.include_exts = py,png,jpg,kv,atlas,json
 version = 0.1
 
 # (list) Application requirements
-requirements = python3,kivy,pillow
+# Pure-python reportlab avoids broken external C-extension mirrors
+requirements = python3,kivy,pillow,reportlab
 
 # (list) Permissions
 android.permissions = WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,MANAGE_EXTERNAL_STORAGE
 
 # (int) Target Android API
-android.api = 34
+android.api = 33
 
 # (int) Minimum API supported
 android.minapi = 21
@@ -36,11 +37,8 @@ android.ndk = 25b
 # (bool) Automatically accept SDK license
 android.accept_sdk_license = True
 
-# (list) Target architecture (targeting 64-bit speeds up builds and avoids legacy 32-bit download mirrors)
+# (list) Target 64-bit architecture
 android.archs = arm64-v8a
-
-# (str) Use latest python-for-android recipe mirrors
-p4a.branch = master
 
 # (str) Supported orientation
 orientation = portrait
@@ -55,5 +53,3 @@ log_level = 2
 
 # (int) Display warning if buildozer is run as root (0 = False, 1 = True)
 warn_on_root = 1
-# Install reportlab via pip directly during build
-android.pip_dependencies = reportlab==3.6.12
