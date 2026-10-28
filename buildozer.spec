@@ -12,15 +12,14 @@ package.domain = com.jsrtravels
 # (str) Source code where the main.py lives
 source.dir = .
 
-# (list) Source files to include (let empty to include all the files)
-source.include_exts = py,png,jpg,kv,atlas,json
+# (list) Source files to include (includes font/data files needed by ReportLab)
+source.include_exts = py,png,jpg,kv,atlas,json,afm,pfb,ttf
 
 # (str) Application versioning
 version = 0.1
 
-# (list) Application requirements
-# Pure-python reportlab avoids broken external C-extension mirrors
-requirements = python3,kivy,pillow,reportlab
+# (list) Application requirements (reportlab is bundled locally above, bypassing the broken mirror)
+requirements = python3,kivy,pillow
 
 # (list) Permissions
 android.permissions = WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,MANAGE_EXTERNAL_STORAGE
@@ -37,7 +36,7 @@ android.ndk = 25b
 # (bool) Automatically accept SDK license
 android.accept_sdk_license = True
 
-# (list) Target 64-bit architecture
+# (list) Target architecture
 android.archs = arm64-v8a
 
 # (str) Supported orientation
