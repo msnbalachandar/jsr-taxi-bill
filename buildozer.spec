@@ -19,13 +19,13 @@ source.include_exts = py,png,jpg,kv,atlas,json
 version = 0.1
 
 # (list) Application requirements
-requirements = python3,kivy,reportlab,pillow
+requirements = python3,kivy,pillow
 
 # (list) Permissions
 android.permissions = WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,MANAGE_EXTERNAL_STORAGE
 
 # (int) Target Android API
-android.api = 33
+android.api = 34
 
 # (int) Minimum API supported
 android.minapi = 21
@@ -55,3 +55,5 @@ log_level = 2
 
 # (int) Display warning if buildozer is run as root (0 = False, 1 = True)
 warn_on_root = 1
+# Install reportlab via pip directly during build
+android.pip_dependencies = reportlab==3.6.12
