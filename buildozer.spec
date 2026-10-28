@@ -36,6 +36,12 @@ android.ndk = 25b
 # (bool) Automatically accept SDK license
 android.accept_sdk_license = True
 
+# (list) Target architecture (targeting 64-bit speeds up builds and avoids legacy 32-bit download mirrors)
+android.archs = arm64-v8a
+
+# (str) Use latest python-for-android recipe mirrors
+p4a.branch = master
+
 # (str) Supported orientation
 orientation = portrait
 
